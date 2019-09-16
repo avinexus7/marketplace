@@ -28,8 +28,8 @@ public class InventoryController {
     }
 
     @GetMapping(path="/one")
-    public List<Inventory> getOneInventory() {
-        List<Inventory> inventoryList = inventoryService.getOneInventory();
+    public Inventory getOneInventory() {
+        Inventory inventoryList = inventoryService.getInventoryByName("avinash");
         return inventoryList;
     }
 

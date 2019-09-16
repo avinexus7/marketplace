@@ -3,7 +3,6 @@ package com.marketplace.marketplace.service;
 import com.marketplace.marketplace.entity.Inventory;
 import com.marketplace.marketplace.repository.InventoryRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Example;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -29,7 +28,13 @@ public class InventoryServiceImpl implements InventoryService {
 
     @Override
     public Inventory getOneInventory(Integer invName) {
-        Boolean getOneResponse = inventoryRepository.findById(invName);
-        return getOneResponse;
+        Optional<Inventory> inventory= inventoryRepository.findById(invName);
+        return inventory.get();
+    }
+    
+    @Override
+    public Inventory getInventoryByName(String invName) {
+        Inventory inventory= inventoryRepository.findByName(invName);
+        return inventory;
     }
 }

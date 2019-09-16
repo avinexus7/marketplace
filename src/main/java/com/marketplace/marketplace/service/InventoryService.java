@@ -10,6 +10,10 @@ public interface InventoryService {
 
     public Inventory addInventory(Inventory new_inventory);
 
-    public Boolean getOneInventory(Integer invName);
+	Inventory getOneInventory(Integer invName);
+
+	Inventory getInventoryByName(String invName);
+
+//    public Boolean getOneInventory(Integer invName);
 
 }
