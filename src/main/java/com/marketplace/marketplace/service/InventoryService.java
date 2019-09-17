@@ -13,8 +13,8 @@ public interface InventoryService {
 
     public Inventory addInventory(Inventory new_inventory);
 
-	Inventory getOneInventory(Integer invName);
+    public Inventory getOneInventory(Long invName);
 
-	Inventory getInventoryByName(String invName);
+    public Inventory getInventoryByName(String invName);
 
 }

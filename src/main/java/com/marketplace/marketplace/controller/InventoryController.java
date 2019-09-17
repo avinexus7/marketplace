@@ -37,6 +37,9 @@ public class InventoryController {
     @PostMapping
     @ResponseBody
     public ResponseEntity<Inventory> addInventory(@RequestBody Inventory inventory) {
+    	/**
+    	 * add conditions here to validate the incoming inventory fields
+    	 */
         Inventory saveResponse = inventoryService.addInventory(inventory);
         return new ResponseEntity<Inventory>(saveResponse, HttpStatus.CREATED);
     }
