@@ -14,6 +14,4 @@ public interface InventoryService {
 
 	Inventory getInventoryByName(String invName);
 
-//    public Boolean getOneInventory(Integer invName);
-
 }
