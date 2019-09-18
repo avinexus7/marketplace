@@ -16,7 +16,7 @@ public interface InventoryRepository extends JpaRepository<Inventory, Long> {
      * @param remainingQuantity
      * @return
      */
-	@Query("select i from Inventory i, Product p where "
+	@Query("select i from Inventory i join  i.product p where "
 			+ " p.name=:name and "
 			+ " i.remainingQuantity >= :remainingQuantity")
 	Inventory findProductItem(@Param("name") String name, @Param("remainingQuantity") Integer remainingQuantity);

@@ -38,7 +38,7 @@ public class OrdersController {
 //    }
 
     @PostMapping(path="/new")
-    public ResponseEntity<String> placeOrder(@RequestParam String name, Integer quantity) {
+    public ResponseEntity<String> placeOrder(@RequestParam String name, @RequestParam Integer quantity) {
 
         String newOrder = ordersService.placeNewOrder(name, quantity);
 
