@@ -1,10 +1,10 @@
 package com.marketplace.marketplace.controller;
 
+import com.marketplace.marketplace.service.OrdersService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
 import com.marketplace.marketplace.entity.Inventory;
 import com.marketplace.marketplace.repository.InventoryRepository;
@@ -14,8 +14,11 @@ import com.marketplace.marketplace.repository.InventoryRepository;
 public class OrdersController {
 	
 	@Autowired
-	InventoryRepository inventoryRepository; 
-	
+	InventoryRepository inventoryRepository;
+
+    @Autowired
+    OrdersService ordersService;
+
     @GetMapping
     public String check() {
     	
@@ -26,12 +29,20 @@ public class OrdersController {
     	}
     	
     	
-        return "hellor orders";
+        return "hello orders";
     }
     
-    @PostMapping(path="/place")
-    public String placeOrder() {
-    	return "order placed";
+//    @PostMapping(path="/place")
+//    public String placeOrder() {
+//    	return "order placed";
+//    }
+
+    @PostMapping(path="/new")
+    public ResponseEntity<String> placeOrder(@RequestParam String name, Integer quantity) {
+
+        String newOrder = ordersService.placeNewOrder(name, quantity);
+
+        return new ResponseEntity<String>(newOrder, HttpStatus.CREATED);
     }
 
 }

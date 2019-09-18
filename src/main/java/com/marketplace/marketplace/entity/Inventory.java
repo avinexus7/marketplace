@@ -12,30 +12,44 @@ public class Inventory {
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id", nullable = false)
     private Long id;
-    
-    private String name;
-    
+
     private Integer remainingQuantity;
     
 	/**
 	 * mapping the inventory with product
 	 */
 	
-	@OneToOne
+	@OneToOne(cascade = CascadeType.PERSIST)
     private Product product;
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public Product getProduct() {
+        return product;
+    }
+
+    public void setProduct(Product product) {
+        this.product = product;
+    }
+
+    public List<Orders> getInventoryList() {
+        return inventoryList;
+    }
+
+    public void setInventoryList(List<Orders> inventoryList) {
+        this.inventoryList = inventoryList;
+    }
 
     @OneToMany(mappedBy = "product")
 	List<Orders> inventoryList = new ArrayList<Orders>();
-   
 
-    public String getName() {
-        return name;
-    }
 
-    public void setName(String name) {
-        this.name = name;
-    }
-    
     public Integer getRemainingQuantity() {
 		return remainingQuantity;
 	}
@@ -46,7 +60,7 @@ public class Inventory {
 
 	@Override
 	public String toString() {
-		return "Inventory [id=" + id + ", name=" + name + ", remainingQuantity=" + remainingQuantity + ", product="
+		return "Inventory [id=" + id + ", remainingQuantity=" + remainingQuantity + ", product="
 				+ product + ", inventoryList=" + inventoryList + "]";
 	}
 

@@ -12,9 +12,4 @@ public interface InventoryService {
     public List<Inventory> getAllInventory();
 
     public Inventory addInventory(Inventory new_inventory);
-
-    public Inventory getOneInventory(Long invName);
-
-    public Inventory getInventoryByName(String invName);
-
 }

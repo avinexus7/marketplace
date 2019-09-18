@@ -28,18 +28,12 @@ public class InventoryController {
         return new ResponseEntity<List<Inventory>>(inventoryList, HttpStatus.OK);
     }
 
-    @GetMapping(path="/one")
-    public ResponseEntity<Inventory> getOneInventory() {
-    	Inventory inventoryList = inventoryService.getInventoryByName("avinash");
-        return new ResponseEntity<Inventory>(inventoryList, HttpStatus.OK);
-    }
-
     @PostMapping
     @ResponseBody
     public ResponseEntity<Inventory> addInventory(@RequestBody Inventory inventory) {
-    	/**
-    	 * add conditions here to validate the incoming inventory fields
-    	 */
+        /**
+         * add conditions here to validate the incoming inventory fields
+         */
         Inventory saveResponse = inventoryService.addInventory(inventory);
         return new ResponseEntity<Inventory>(saveResponse, HttpStatus.CREATED);
     }

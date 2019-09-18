@@ -9,9 +9,13 @@ import com.marketplace.marketplace.entity.Inventory;
 
 @Repository
 public interface InventoryRepository extends JpaRepository<Inventory, Long> {
-	
-	Inventory findByName(String name);
-	
+
+    /**
+     * defining a custom query to get a product with given name and remaining quantity
+     * @param name
+     * @param remainingQuantity
+     * @return
+     */
 	@Query("select i from Inventory i, Product p where "
 			+ " p.name=:name and "
 			+ " i.remainingQuantity >= :remainingQuantity")

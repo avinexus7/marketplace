@@ -1,10 +1,13 @@
 package com.marketplace.marketplace.service;
 
 import com.marketplace.marketplace.entity.Inventory;
+import com.marketplace.marketplace.entity.Product;
 import com.marketplace.marketplace.repository.InventoryRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
 import java.util.List;
 import java.util.Optional;
 
@@ -13,6 +16,9 @@ public class InventoryServiceImpl implements InventoryService {
 
     @Autowired
     InventoryRepository inventoryRepository;
+
+    @Autowired
+    EntityManagerFactory emf;
 
     @Override
     public synchronized List<Inventory> getAllInventory() {
@@ -27,15 +33,5 @@ public class InventoryServiceImpl implements InventoryService {
         return saveResponse;
     }
 
-    @Override
-    public synchronized Inventory getOneInventory(Long invName) {
-        Optional<Inventory> inventory= inventoryRepository.findById(invName);
-        return inventory.get();
-    }
-    
-    @Override
-    public synchronized Inventory getInventoryByName(String invName) {
-        Inventory inventory= inventoryRepository.findByName(invName);
-        return inventory;
-    }
+
 }

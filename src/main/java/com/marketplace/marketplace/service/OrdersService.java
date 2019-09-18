@@ -7,6 +7,6 @@ import org.springframework.stereotype.Service;
 @Service
 public interface OrdersService {
 	
-	public Orders placeNewOrder(Orders new_inventory);
+	public String placeNewOrder(String name, Integer quantity);
 
 }
