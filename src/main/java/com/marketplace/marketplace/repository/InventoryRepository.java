@@ -18,11 +18,8 @@ public interface InventoryRepository extends JpaRepository<Inventory, Long> {
      */
 	@Query("select i from Inventory i join  i.product p where "
 			+ " p.name=:name and "
-			+ " i.remainingQuantity >= :remainingQuantity")
+			+ " i.remainingQuantity >= :remainingQuantity and "
+			+ " i.remainingQuantity > 0")
 	Inventory findProductItem(@Param("name") String name, @Param("remainingQuantity") Integer remainingQuantity);
-	
-	@Query("update Inventory set remainingQuantity=:remainingQuantity where id=:id")
-	Inventory updateRemainingQuantityById(@Param("remainingQuantity") Integer remainingQuantity,@Param("id") Long id);
-	
 	
 }

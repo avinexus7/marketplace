@@ -30,7 +30,7 @@ To start the development server, you need the following prerequisites:
 		"name": "screwdriver",
 		"type": "hardware"
 	}
-}' 'localhost:8080/inventory'
+}' 'localhost:8080/inventory/new'
 - Viewing all the products
 > curl -XGET 'localhost:8080/product/all'
 - Placing an order

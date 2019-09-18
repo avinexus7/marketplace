@@ -5,6 +5,8 @@ import java.util.List;
 
 import javax.persistence.*;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 public class Inventory {
 
@@ -16,12 +18,20 @@ public class Inventory {
     private Integer remainingQuantity;
     
 	/**
-	 * mapping the inventory with product
+	 * mapping the inventory with product, using cascade to maintain backwards compatibility
+	 * and JsonIgnore to exclude nested queries by join
 	 */
 	
 	@OneToOne(cascade = CascadeType.PERSIST)
+	@JsonIgnore
     private Product product;
 
+   
+
+    @OneToMany(mappedBy = "product")
+    @JsonIgnore
+	List<Orders> inventoryList = new ArrayList<Orders>();
+    
     public Long getId() {
         return id;
     }
@@ -45,9 +55,6 @@ public class Inventory {
     public void setInventoryList(List<Orders> inventoryList) {
         this.inventoryList = inventoryList;
     }
-
-    @OneToMany(mappedBy = "product")
-	List<Orders> inventoryList = new ArrayList<Orders>();
 
 
     public Integer getRemainingQuantity() {

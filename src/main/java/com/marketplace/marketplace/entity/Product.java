@@ -5,6 +5,8 @@ import java.util.List;
 
 import javax.persistence.*;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 public class Product {
 	
@@ -21,12 +23,14 @@ public class Product {
 	 * mapping each product with each inventory available
 	 */
 	@OneToOne(mappedBy = "product")
+	@JsonIgnore
 	private Inventory inventory;
 	
 	/**
 	 * mapping a product with many orders which may be placed
 	 */
 	@OneToMany(mappedBy = "product")
+	@JsonIgnore
 	List<Orders> inventoryList = new ArrayList<Orders>();
 
 	public Long getId() {

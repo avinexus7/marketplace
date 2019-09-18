@@ -19,16 +19,18 @@ public class InventoryController {
 
     @GetMapping
     public String check() {
-        return "hello world 0998765";
+        return "hello world inventory";
     }
 
+    // get all the products' inventory
     @GetMapping(path="/all")
     public ResponseEntity<List<Inventory>> getAllInventory() {
         List<Inventory> inventoryList = inventoryService.getAllInventory();
         return new ResponseEntity<List<Inventory>>(inventoryList, HttpStatus.OK);
     }
 
-    @PostMapping
+    // create a new inventory with product
+    @PostMapping(path="/new")
     @ResponseBody
     public ResponseEntity<Inventory> addInventory(@RequestBody Inventory inventory) {
         /**

@@ -19,13 +19,18 @@ public class InventoryServiceImpl implements InventoryService {
 
     @Override
     public synchronized List<Inventory> getAllInventory() {
+    	/**
+    	 * get all the inventory of the products
+    	 */
         List<Inventory> inventoryList = inventoryRepository.findAll();
-        
         return inventoryList;
     }
 
     @Override
     public synchronized Inventory addInventory(Inventory new_inventory) {
+    	/**
+    	 * save a new inventory product
+    	 */
         Inventory saveResponse = inventoryRepository.save(new_inventory);
         return saveResponse;
     }

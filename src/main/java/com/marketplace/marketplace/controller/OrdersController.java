@@ -22,12 +22,20 @@ public class OrdersController {
         return "hello orders";
     }
 
+    // create a new order with product name and required quantity
     @PostMapping(path="/new")
     public ResponseEntity<String> placeOrder(@RequestParam String name, @RequestParam Integer quantity) throws Exception {
+    	String response = "";
 
-        String newOrder = ordersService.placeNewOrder(name, quantity);
+		try {
+			response = ordersService.placeNewOrder(name, quantity);
+		} catch (Exception e) {
+			// handling stock not available exception
+//			e.printStackTrace();
+			response = e.getMessage();
+		}
 
-        return new ResponseEntity<String>(newOrder, HttpStatus.CREATED);
+        return new ResponseEntity<String>(response, HttpStatus.CREATED);
     }
 
 }
