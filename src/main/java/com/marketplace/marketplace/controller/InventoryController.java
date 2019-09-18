@@ -2,6 +2,7 @@ package com.marketplace.marketplace.controller;
 
 import com.marketplace.marketplace.entity.Inventory;
 import com.marketplace.marketplace.service.InventoryService;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -18,24 +19,23 @@ public class InventoryController {
 
     @GetMapping
     public String check() {
-        return "hello worl 0998765";
+        return "hello world inventory";
     }
 
+    // get all the products' inventory
     @GetMapping(path="/all")
-    public List<Inventory> getAllInventory() {
+    public ResponseEntity<List<Inventory>> getAllInventory() {
         List<Inventory> inventoryList = inventoryService.getAllInventory();
-        return inventoryList;
+        return new ResponseEntity<List<Inventory>>(inventoryList, HttpStatus.OK);
     }
 
-    @GetMapping(path="/one")
-    public List<Inventory> getOneInventory() {
-        List<Inventory> inventoryList = inventoryService.getOneInventory();
-        return inventoryList;
-    }
-
-    @PostMapping
+    // create a new inventory with product
+    @PostMapping(path="/new")
     @ResponseBody
     public ResponseEntity<Inventory> addInventory(@RequestBody Inventory inventory) {
+        /**
+         * add conditions here to validate the incoming inventory fields
+         */
         Inventory saveResponse = inventoryService.addInventory(inventory);
         return new ResponseEntity<Inventory>(saveResponse, HttpStatus.CREATED);
     }
