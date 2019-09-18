@@ -5,8 +5,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
-import com.marketplace.marketplace.entity.Inventory;
 import com.marketplace.marketplace.repository.InventoryRepository;
 
 @RestController
@@ -21,24 +19,11 @@ public class OrdersController {
 
     @GetMapping
     public String check() {
-    	
-    	Inventory inventory = inventoryRepository.findProductItem("screw",1);
-    	
-    	if ( inventory != null ) {
-    		// create order
-    	}
-    	
-    	
         return "hello orders";
     }
-    
-//    @PostMapping(path="/place")
-//    public String placeOrder() {
-//    	return "order placed";
-//    }
 
     @PostMapping(path="/new")
-    public ResponseEntity<String> placeOrder(@RequestParam String name, @RequestParam Integer quantity) {
+    public ResponseEntity<String> placeOrder(@RequestParam String name, @RequestParam Integer quantity) throws Exception {
 
         String newOrder = ordersService.placeNewOrder(name, quantity);
 
