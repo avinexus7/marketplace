@@ -5,8 +5,6 @@ import java.util.List;
 
 import javax.persistence.*;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
 @Entity
 public class Inventory {
 
@@ -23,13 +21,13 @@ public class Inventory {
 	 */
 	
 	@OneToOne(cascade = CascadeType.PERSIST)
-	@JsonIgnore
+//	@JsonIgnore
     private Product product;
 
    
 
     @OneToMany(mappedBy = "product")
-    @JsonIgnore
+//    @JsonIgnore
 	List<Orders> inventoryList = new ArrayList<Orders>();
     
     public Long getId() {

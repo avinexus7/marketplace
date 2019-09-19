@@ -26,6 +26,7 @@ public class OrdersController {
     @PostMapping(path="/new")
     public ResponseEntity<String> placeOrder(@RequestParam String name, @RequestParam Integer quantity) throws Exception {
     	String response = "";
+    	HttpStatus httpStatus = HttpStatus.CREATED;
 
 		try {
 			response = ordersService.placeNewOrder(name, quantity);
@@ -33,9 +34,10 @@ public class OrdersController {
 			// handling stock not available exception
 //			e.printStackTrace();
 			response = e.getMessage();
+			httpStatus = HttpStatus.NOT_ACCEPTABLE;
 		}
 
-        return new ResponseEntity<String>(response, HttpStatus.CREATED);
+        return new ResponseEntity<String>(response, httpStatus);
     }
 
 }
